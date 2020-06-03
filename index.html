@@ -184,32 +184,24 @@
   var fireballSize = 22;
   var wizardSpeed = 3;
   var wizardWidth = 70;
-  // А логика здесь должна быть следующей. Есть ли у нас ветер? Если нет то скорость шара стабильна.
-  // Если ветер есть то какой он, слева или справа, какая у него сила? Т.е. с какой скоростью будет перемещаться файрболл?
-  // Если ветер слева тогда (т.к. скорость самого файрболла неизвестна мы говорим что при броске в право скорость ФБ 5 а в лево 2) Но так как в общем то задано фактичесское значение скорости именно для сторон броска... (Постановка задачи странная.)
-  var throwLeft = true;
-// Хотел реализовывать через строгое соответствие изначально.
-  var getFireballSpeed = function (throwLeft) {
-    if (!throwLeft) {
-      return 5
+// Скорость ФБ
+  var getFireballSpeed = function (windLeft) {
+    if (!windLeft) {
+      return 2
     }
-  return 2
+  return 5
 }
-// Считаю высоту фигуры.//  1.337 * ширину мага;
+// Высота фигуры
 var getWizardHeight = function () {
   return wizardWidth * 1.337;
 }
-// функции getWizardX и getWizardY
-// По оси х , нужен центр, получить разделив общую ширину экрана пополам.можно еще в процентах задать 50%. От куда брать значения?
-var getWizardX = function(widthViewport) {
-  return widthViewport / 2;
-  // return 350
+// Стартовое положение по оси Х
+var getWizardX = function(width) {
+  return (width - wizardWidth) / 2;
 }
-// По оси Y ! отсчет от топ 0 по вертикали.фигурка находится на высоте две трети игрового поля от земли. После просмотра демки понял что не увидел зависимости и что можно было просто еще раз разделить на 3 значение высоты. Но в то же время не является ли это принципом обособленности.
-var getWizardY = function(widthViewport) {
-  // return (widthViewport * 2) / 3;
-  // return 200
-  return widthViewport *  0.66;
+// Стартовое положение по оси Y
+var getWizardY = function(height) {
+  return height / 3 * 2;
 }
 </script>
 <script src="js/game.js"></script>
